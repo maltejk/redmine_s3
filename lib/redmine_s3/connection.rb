@@ -12,7 +12,8 @@ module RedmineS3
       :endpoint          => nil,
       :private           => false,
       :expires           => nil,
-      :secure            => false
+      :secure            => false,
+      :use_ssl           => nil
     }
 
     class << self
@@ -30,6 +31,7 @@ module RedmineS3
           :secret_access_key => @@s3_options[:secret_access_key]
         }
         options[:s3_endpoint] = self.endpoint unless self.endpoint.nil?
+        options[:use_ssl] = self.use_ssl unless self.use_ssl.nil?
         @conn = AWS::S3.new(options)
       end
 
